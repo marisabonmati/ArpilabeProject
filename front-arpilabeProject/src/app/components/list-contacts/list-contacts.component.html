@@ -1,1 +1,45 @@
-<p>list-contacts works!</p>
+<div class="row my-5">
+    <div class="col-lg-6">
+        <h3>Liste des Contacts</h3>
+    </div>
+    <div class="col-lg-6">
+        <button class="btn btn-primary float-right" [routerLink]="['ajouter']">Ajouter un contact</button>
+    </div>
+</div>
+<div>
+    <table class="table table-sm table-hover">
+        <thead>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Département</th>
+            <th></th>
+            <th></th>
+        </thead>
+        <tbody>
+            <tr>
+                <td><a [routerLink]="['/voir/', '1']">Bonmatí Mendoza</a></td>
+                <td>Maria Isabel</td>
+                <td>IT Développement web</td>
+                <td>
+                    <button class="btn btn-primary btn-sm float-right" [routerLink]="['/editer/', '1']">Éditer</button>
+                </td>
+                <td>
+                    <button class="btn btn-danger btn-sm float-right">Effacer</button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a [routerLink]="['/voir/', '2']">Grossier</a>
+                </td>
+                <td>Manuel</td>
+                <td>Enseignement</td>
+                <td>
+                    <button class="btn btn-primary btn-sm float-right" [routerLink]="['/editer/', '2']">Éditer</button>
+                </td>
+                <td>
+                    <button class="btn btn-danger btn-sm float-right">Effacer</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

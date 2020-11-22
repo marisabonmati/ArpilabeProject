@@ -1,4 +1,9 @@
 <h3 class="my-5"> {{ action }} </h3>
+
+<div class="spinner-border text-primary" role="status" *ngIf="loading">
+    <span class="sr-only">Loading...</span>
+</div>
+
 <form [formGroup]="contact" (ngSubmit)="sauvgarderContact()">
     <div class="form-group row">
         <label class="control-label col-md-12 my-2">Nom</label>

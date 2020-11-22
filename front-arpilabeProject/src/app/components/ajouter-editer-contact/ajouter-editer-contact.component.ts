@@ -15,6 +15,8 @@ export class AjouterEditerContactComponent implements OnInit {
   contact: FormGroup;
   idContact = 0;
   action = 'Ajouter un contact';
+  loading = false;
+  contacter: Contact;
 
   constructor(private fb: FormBuilder, private route: ActivatedRoute, private contactService: ContactService, private router: Router) {
     this.contact = this.fb.group({
@@ -38,8 +40,8 @@ export class AjouterEditerContactComponent implements OnInit {
     this.esEditer();
   }
 
-  sauvgarderContact(){
-    if(this.action === "Ajouter"){
+  sauvgarderContact() {
+    if (this.action === "Ajouter") {
       const contact: Contact = {
         dateDeNaissance: new Date(),
         nom: this.contact.get('nom').value,
@@ -50,7 +52,21 @@ export class AjouterEditerContactComponent implements OnInit {
         telephone: this.contact.get('telephone').value,
       };
 
-      this.contactService.saveContact(contact).subscribe(data =>{
+      this.contactService.saveContact(contact).subscribe(data => {
+        this.router.navigate(['/']);
+      })
+    } else {
+      const contact: Contact = {
+        id: this.contact.id,
+        dateDeNaissance: new Date(),
+        nom: this.contact.get('nom').value,
+        prenom: this.contact.get('prenom').value,
+        departement: this.contact.get('departement').value,
+        note: this.contact.get('note').value,
+        email: this.contact.get('email').value,
+        telephone: this.contact.get('telephone').value,
+      };
+      this.contactService.editContact(this.idContact, contact).subscribe(data => {
         this.router.navigate(['/']);
       })
     }
@@ -60,15 +76,18 @@ export class AjouterEditerContactComponent implements OnInit {
   esEditer() {
     if (this.idContact > 0) {
       this.action = 'Éditer le contact';
-      this.contact.patchValue({
-        nom: 'Bonmati',
-        prenom: 'Marisa',
-        dateDeNaissance: '17/04/90',
-        telephone: '333333333',
-        email: 'hola@hola.com',
-        departement: 'IT',
-        note: 'ok'
-      })
+      this.contactService.loadContact(this.idContact).subscribe(data => {
+        this.contacter = data;
+        this.contact.patchValue({
+          nom: data.nom,
+          prenom: data.prenom,
+          dateDeNaissance: data.dateDeNaissance,
+          telephone: data.telephone,
+          email: data.email,
+          departement: data.departement,
+          note: data.note
+        });
+      });
     }
   }
 

@@ -14,7 +14,7 @@ export class AjouterEditerContactComponent implements OnInit {
 
   contact: FormGroup;
   idContact = 0;
-  action = 'Ajouter un contact';
+  action = 'Ajouter';
   loading = false;
   contacter: Contact;
 
@@ -43,7 +43,7 @@ export class AjouterEditerContactComponent implements OnInit {
   sauvgarderContact() {
     if (this.action === "Ajouter") {
       const contact: Contact = {
-        dateDeNaissance: new Date(),
+        dateDeNaissance: this.contact.get('dateDeNaissance').value,  // jour de création :S
         nom: this.contact.get('nom').value,
         prenom: this.contact.get('prenom').value,
         departement: this.contact.get('departement').value,
@@ -54,11 +54,12 @@ export class AjouterEditerContactComponent implements OnInit {
 
       this.contactService.saveContact(contact).subscribe(data => {
         this.router.navigate(['/']);
-      })
+      });
+
     } else {
       const contact: Contact = {
-        id: this.contact.id,
-        dateDeNaissance: new Date(),
+        id: this.idContact,
+        dateDeNaissance: this.contact.get('dateDeNaissance').value,
         nom: this.contact.get('nom').value,
         prenom: this.contact.get('prenom').value,
         departement: this.contact.get('departement').value,
@@ -68,14 +69,14 @@ export class AjouterEditerContactComponent implements OnInit {
       };
       this.contactService.editContact(this.idContact, contact).subscribe(data => {
         this.router.navigate(['/']);
-      })
+      });
     }
     console.log(this.contact);
   }
 
   esEditer() {
     if (this.idContact > 0) {
-      this.action = 'Éditer le contact';
+      this.action = 'Editer';
       this.contactService.loadContact(this.idContact).subscribe(data => {
         this.contacter = data;
         this.contact.patchValue({

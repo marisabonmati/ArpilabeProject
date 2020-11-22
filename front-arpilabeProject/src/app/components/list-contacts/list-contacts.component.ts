@@ -20,9 +20,9 @@ export class ListContactsComponent implements OnInit {
 
   loadContact(){
     this.loading = true;
-    this.contactService.getListContacts().subscribe(data =>{
+    this.contactService.getListContacts().subscribe(data =>{ 
       this.loading = false;
-      this.listContacts = data;
+      this.listContacts = data; 
     })
   }
 

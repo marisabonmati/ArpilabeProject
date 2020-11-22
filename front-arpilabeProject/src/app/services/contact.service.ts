@@ -8,7 +8,7 @@ import { Contact } from '../models/contact';
 })
 export class ContactService {
   myAppUrl = 'https://localhost:5001/';
-  myApiUrl = 'api/Contact';
+  myApiUrl = 'api/Contact/';
 
   httpOptions = {
     headers: new HttpHeaders({

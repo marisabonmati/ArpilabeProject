@@ -29,4 +29,15 @@ export class ContactService {
   saveContact(contact: Contact): Observable<Contact> {
     return this.http.post<Contact>(this.myAppUrl + this.myApiUrl, contact, this.httpOptions);
   }
+<<<<<<< Updated upstream
+=======
+
+  loadContact(id: number): Observable<Contact> {
+    return this.http.get<Contact>(this.myAppUrl + this.myApiUrl +id);
+  }
+
+  editContact(id: number, contact: Contact): Observable<Contact> {
+    return this.http.put<Contact>(this.myAppUrl + this.myApiUrl, contact, this.httpOptions);
+  }
+>>>>>>> Stashed changes
 }

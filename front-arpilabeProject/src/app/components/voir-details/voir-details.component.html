@@ -1,8 +1,13 @@
 <div class="my-5">
-    <h3 class="mb-3">Détails du contact</h3>
+    <div class="spinner-border text-primary" role="status" *ngIf="loading">
+        <span class="sr-only">Loading...</span>
+      </div>
+    <h3 class="mb-3">{{contact.nom}} {{contact.prenom}}</h3>
     <ul>
-        <li>Maria Isabel</li>
-        <li>Bonmatí</li>
-        <li>17/04/90</li>
+        <li>{{contact.dateDeNaissance | date:'dd/MM/yy'}}</li>
+        <li>{{contact.departement}}</li>
+        <li>{{contact.telephone}}</li>
+        <li>{{contact.email}}</li>
+        <li>{{contact.note}}</li>
     </ul>
 </div>

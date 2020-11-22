@@ -5,6 +5,9 @@
     <div class="col-lg-6">
         <button class="btn btn-primary float-right" [routerLink]="['ajouter']">Ajouter un contact</button>
     </div>
+    <div class="spinner-border text-primary" role="status" *ngIf="loading">
+        <span class="sr-only">Loading...</span>
+      </div>
 </div>
 <div>
     <table class="table table-sm table-hover">
@@ -16,28 +19,16 @@
             <th></th>
         </thead>
         <tbody>
-            <tr>
-                <td><a [routerLink]="['/voir/', '1']">Bonmatí Mendoza</a></td>
-                <td>Maria Isabel</td>
-                <td>IT Développement web</td>
+            <tr *ngFor="let contact of listContacts">
+                <td><a [routerLink]="['/voir/', contact.id]">{{contact.nom}}</a></td>
+                <td>{{contact.prenom}}</td>
+                <td>{{contact.departement}}</td>
+                <td>{{contact.dateDeNaissance | date: 'dd/MM/yy'}}</td>
                 <td>
-                    <button class="btn btn-primary btn-sm float-right" [routerLink]="['/editer/', '1']">Éditer</button>
+                    <button class="btn btn-primary btn-sm float-right" [routerLink]="['/editer/', contact.id]">Éditer</button>
                 </td>
                 <td>
-                    <button class="btn btn-danger btn-sm float-right">Effacer</button>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a [routerLink]="['/voir/', '2']">Grossier</a>
-                </td>
-                <td>Manuel</td>
-                <td>Enseignement</td>
-                <td>
-                    <button class="btn btn-primary btn-sm float-right" [routerLink]="['/editer/', '2']">Éditer</button>
-                </td>
-                <td>
-                    <button class="btn btn-danger btn-sm float-right">Effacer</button>
+                    <button class="btn btn-danger btn-sm float-right" (click)="delete(contact.id)">Effacer</button>
                 </td>
             </tr>
         </tbody>

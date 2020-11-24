@@ -43,7 +43,7 @@ export class AjouterEditerContactComponent implements OnInit {
   sauvgarderContact() {
     if (this.action === "Ajouter") {
       const contact: Contact = {
-        dateDeNaissance: this.contact.get('dateDeNaissance').value,  // jour de création :S
+        dateDeNaissance: this.contact.get('dateDeNaissance').value,  
         nom: this.contact.get('nom').value,
         prenom: this.contact.get('prenom').value,
         departement: this.contact.get('departement').value,

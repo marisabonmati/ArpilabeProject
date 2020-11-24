@@ -14,6 +14,8 @@
         <thead>
             <th>Nom</th>
             <th>Prénom</th>
+            <th>Téléphone</th>
+            <th>e-mail</th>
             <th>Département</th>
             <th></th>
             <th></th>
@@ -22,8 +24,9 @@
             <tr *ngFor="let contact of listContacts">
                 <td><a [routerLink]="['/voir/', contact.id]">{{contact.nom}}</a></td>
                 <td>{{contact.prenom}}</td>
+                <td>{{contact.telephone }}</td>
+                <td>{{contact.email }}</td>
                 <td>{{contact.departement}}</td>
-                <td>{{contact.dateDeNaissance | date: 'dd/MM/yy'}}</td>
                 <td>
                     <button class="btn btn-primary btn-sm float-right" [routerLink]="['/editer/', contact.id]">Éditer</button>
                 </td>

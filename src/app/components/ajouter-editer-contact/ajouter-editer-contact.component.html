@@ -40,7 +40,7 @@
     <div class="form-group row">
         <label class="control-label col-md-12 my-2">Numéro de téléphone</label>
         <div class="col-md-12">
-            <input type="number" class="form-control" formControlName="telephone">
+            <input type="text" class="form-control" formControlName="telephone">
         </div>
         <span class="text-danger ml-3"
             *ngIf="contact.get('telephone').hasError('required') && contact.get('telephone').touched">Veuillez

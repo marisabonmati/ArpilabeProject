@@ -62,13 +62,14 @@
 
     <div class="form-group row">
         <label class="control-label col-md-12 my-2">Département</label>
-        <div class="col-md-12">
-            <input type="text" class="form-control" formControlName="departement">
-        </div>
-        <span class="text-danger ml-3"
-            *ngIf="contact.get('departement').hasError('required') && contact.get('departement').touched">Veuillez
-            renseigner le
-            département</span>
+        <select class="form-control col-md-12" formControlName="departement">
+            <option value="IT">IT</option>
+            <option value="Marketing">Marketing</option>
+            <option value="Commerce">Commerce</option>
+        </select>
+          <span class="text-danger ml-3"
+          *ngIf="contact.get('note').hasError('required') && contact.get('note').touched">Veuillez
+          sélectionner un département</span>
     </div>
 
 
